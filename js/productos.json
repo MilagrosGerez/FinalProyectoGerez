@@ -1,0 +1,30 @@
+[
+    {
+        "id": "Cardigan",
+        "titulo": "Cardigan",
+        "precio": 30000,
+        "imagen": "../public/images/cardigan.jpg.jpg"
+     
+    },
+    {
+        "id": "Campera de cuero",
+        "titulo": "Campera de cuero",
+        "precio" :25000,
+        "imagen": "../public/images/campera.jpg.jpg"
+      
+    },
+    {
+        "id": "sweater",
+        "titulo" :"sweater",
+        "precio": 15000,
+        "imagen": "../public/images/sweater.jpg.jpg"
+       
+    },
+    {
+        "id" :"zapatillas",
+        "titulo": "zapatillas",
+        "precio": 10000,
+        "imagen" : "../public/images/zapas.jpg.jpg"
+        
+    }
+]

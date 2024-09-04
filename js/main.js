@@ -1,41 +1,13 @@
-const productos = [
-    {
-        id: 'Cardigan',
-        titulo: 'Cardigan',
-        precio: 30000,
-        cantidad: 6,
-        talle: "único",
-        imagen: '../public/images/cardigan.jpg.jpg',
-     
-    },
-    {
-        id: 'Campera de cuero',
-        titulo: 'Campera de cuero',
-        precio: 25000,
-        cantidad: 2,
-        talle: "M",
-        imagen: '../public/images/campera.jpg.jpg',
-      
-    },
-    {
-        id: 'sweater',
-        titulo: 'sweater',
-        precio: 15000,
-        cantidad: 6,
-        talle: "XL",
-        imagen: '../public/images/sweater.jpg.jpg',
-       
-    },
-    {
-        id: 'zapatillas',
-        titulo: 'zapatillas',
-        precio: 10000,
-        cantidad: 30,
-        talle: 42,
-        imagen: '../public/images/zapas.jpg.jpg',
-        
-    }
-];
+let productos = [];
+
+fetch("./js/productos.json")
+   .then(response => response.json())
+   .then(data => {
+    productos = data;
+    cargarProductos(productos);
+    tituloPrincipal.textContent = "Nuestros Productos";
+    numerito.textContent = productos.length;
+   })
 const contenedorProductos = document.querySelector("#contenedor-productos")
 const tituloPrincipal = document.querySelector('#titulo-principal');
 let botonesAgregar = document.querySelectorAll('.producto-agregar');
@@ -72,26 +44,34 @@ function actualizarBotonesAgregar(){
     }  )
 }
 
-const productosEnCarrito = [];
-function agregarAlCarrito(e){
+let productosEnCarrito;
 
+let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
+
+
+
+if(productosEnCarritoLS){
+    productosEnCarrito = JSON.parse(productosEnCarritoLS);
+    actualizarNumerito();
+}else{
+   const productosEnCarrito = []; 
+}
+
+function agregarAlCarrito(e){
     const idBoton = e.currentTarget.id;
     const productoAgregado = productos.find(producto => producto.id ===idBoton);
     
-
     if(productosEnCarrito.some(producto=> producto.id === idBoton))  {
         const index = productosEnCarrito.findIndex(producto => producto.id ===idBoton);
         productosEnCarrito[index].cantidad++;
     }else {
         productoAgregado.cantidad = 1;
         productosEnCarrito.push(productoAgregado);
-
     }
     actualizarNumerito();
     
     localStorage.setItem('productos-en-carrito' , JSON.stringify(productosEnCarrito));
 }
-
 function actualizarNumerito (){
     let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
     numerito.innerText = nuevoNumerito;

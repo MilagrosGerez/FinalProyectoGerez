@@ -30,7 +30,7 @@ a{
 aside{
     padding: 2rem;
     padding-right: 0;
-    color: var(--clr-white);
+    color: white;
     position: sticky;
     top: 0;
     height: 100vh;
@@ -89,7 +89,7 @@ aside{
     color: white;
 }
 main{
-    background-color: rgb(180, 111, 7);
+    background-color:white;
     padding: 2rem;
     margin: 1rem;
     margin-left: 0;
@@ -100,7 +100,8 @@ main{
     color: var(--clr-main);
     margin-bottom: 2rem;
 }
-.contenedor-productos{
+.contenedor-productos,
+.contenedor-carrito{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
@@ -165,7 +166,7 @@ main{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--clr-gray);
+    background-color: gray;
     color: rgb(180, 111, 7);
     padding: .5rem;
     border-radius: 1rem;
@@ -183,7 +184,7 @@ main{
 .carrito-producto-eliminar{
     border: 0;
     background-color: transparent;
-    color: var(--clr-red);
+    color: red;
     cursor: pointer;
 }
 
@@ -195,7 +196,7 @@ main{
 
 .carrito-acciones-vaciar{
     border: 0;
-    background-color: var(--clr-gray);
+    background-color: gray;
     padding: 1rem;
     border-radius: 1rem;
     color: rgb(180, 111, 7);
@@ -209,7 +210,7 @@ main{
 .carrito-acciones-total{
     display: flex;
     border: 0;
-    background-color: var(--clr-gray);
+    background-color: gray;
     padding: 1rem;
     border-radius: 1rem;
     color: rgb(180, 111, 7);
