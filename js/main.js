@@ -34,7 +34,6 @@ function cargarProductos(){
     actualizarBotonesAgregar();
 };
 
-cargarProductos(productos);
 
 function actualizarBotonesAgregar(){
     botonesAgregar = document.querySelectorAll('.producto-agregar');
@@ -48,13 +47,11 @@ let productosEnCarrito;
 
 let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
 
-
-
 if(productosEnCarritoLS){
     productosEnCarrito = JSON.parse(productosEnCarritoLS);
     actualizarNumerito();
 }else{
-   const productosEnCarrito = []; 
+    productosEnCarrito = []; 
 }
 
 function agregarAlCarrito(e){
@@ -62,7 +59,6 @@ function agregarAlCarrito(e){
     Toastify({
         text: "Has elegido un producto!",
         duration: 3000,
-        destination: "https://github.com/apvarun/toastify-js",
         newWindow: true,
         close: true,
         gravity: "top", // `top` or `bottom`
@@ -75,7 +71,7 @@ function agregarAlCarrito(e){
       }).showToast();
 
     const idBoton = e.currentTarget.id;
-    const productoAgregado = productos.find(producto => producto.id ===idBoton);
+    const productoAgregado = {...productos.find(producto => producto.id ===idBoton)};
     
     if(productosEnCarrito.some(producto=> producto.id === idBoton))  {
         const index = productosEnCarrito.findIndex(producto => producto.id ===idBoton);
@@ -92,3 +88,4 @@ function actualizarNumerito (){
     let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
     numerito.innerText = nuevoNumerito;
 }
+
