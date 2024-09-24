@@ -1,5 +1,5 @@
 let productosEnCarrito = JSON.parse(localStorage.getItem('productos-en-carrito'));
-productosEnCarrito = JSON.parse(productosEnCarrito);
+
 
 const contenedorCarritoVacio = document.querySelector('#carrito-vacio');
 const contenedorCarritoProductos = document.querySelector('#carrito-productos');
@@ -44,7 +44,7 @@ if (productosEnCarrito && productosEnCarrito.length > 0) {
                     <small>Subtotal</small>
                     <p>${producto.precio * producto.cantidad}</p>
                 </div>
-                <button class="carrito-producto-eliminar" id"${producto.id}"><i class="bi bi-trash"></i></button>
+                <button class="carrito-producto-eliminar" id="${producto.id}"><i class="bi bi-trash"></i></button>
                 `;
 
                 contenedorCarritoProductos.append(div)
@@ -85,19 +85,26 @@ function eliminarDelCarrito(e){
 }
 botonVaciar.addEventListener('click', vaciarCarrito);
 
-function vaciarCarrito (){
-    productosEnCarrito.length = 0;
-    localStorage.setItem('productos-en-carrito', JSON.stringify(productosEnCarrito));
-    cargarProductosCarrito();
-}
+
 
 function actualizarTotal (){
     const totalCalculado = productosEnCarrito.reduce((acc, producto) => acc +(producto.precio * producto.cantidad), 0);
-    total.innerText = `$${totalCalculado}`;
+    contenedorTotal.innerText = `$${totalCalculado}`;
 }
 
 botonComprar.addEventListener('click', comprarCarrito);
 
+function comprarCarrito(){
+    Swal.fire({
+        title: "Haz realizado una compra",
+        text: "Realizaste existosamente tu compra!",
+        icon: "success"
+      });
+    vaciarCarrito();
+    cargarProductosCarrito();
+    localStorage.removeItem('productos-en-carrito');
+ 
+}
 function vaciarCarrito (){
     productosEnCarrito.length = 0;
     localStorage.setItem('productos-en-carrito', JSON.stringify(productosEnCarrito));
